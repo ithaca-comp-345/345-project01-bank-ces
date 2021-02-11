@@ -12,7 +12,11 @@ public class ATM {
     }
 
     public double checkBalance (BankAccount account){
-       
+        if (account.getBalance() < 0){
+            account.setBalance(0);
+        }
+        int temp = (int)(account.getBalance() * 100);
+        account.setBalance(((double)temp) /100);
         return account.getBalance();
     }
     
