@@ -22,22 +22,13 @@ public class BankAccount {
         return balance;
     }
 
+    public void setBalance(double amount){
+        this.balance = amount;
+    }
+
     public String getEmail(){
         return email;
     }
-
-    /**
-     * @post reduces the balance by amount if amount is non-negative and smaller than balance
-     */
-    public void withdraw (double amount) throws InsufficientFundsException{
-        if (amount <= balance){
-            balance -= amount;
-        }
-        else {
-            throw new InsufficientFundsException("Not enough money");
-        }
-    }
-
 
     public static boolean isEmailValid(String email){
         if (email.indexOf('@') == -1){
@@ -47,4 +38,5 @@ public class BankAccount {
             return true;
         }
     }
+    
 }

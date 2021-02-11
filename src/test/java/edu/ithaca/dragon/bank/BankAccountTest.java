@@ -9,8 +9,13 @@ class BankAccountTest {
     @Test
     void getBalanceTest() {
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
+        ATM atmOne = new ATM();
+        assertEquals(200, atmOne.checkBalance(bankAccount)); //Correct Balance displays 
+        BankAccount bankAccountTwo = new BankAccount("a@b.com", 10.50);  //Balance with a Double
+        assertEquals(10.50, atmOne.checkBalance(bankAccountTwo));
+        BankAccount bankAccountThree = new BankAccount("a@b.com", -1);
+        assertEquals(0, atmOne.checkBalance(bankAccountThree)); //Balance should be 0
 
-        assertEquals(200, bankAccount.getBalance());
     }
 
     @Test
