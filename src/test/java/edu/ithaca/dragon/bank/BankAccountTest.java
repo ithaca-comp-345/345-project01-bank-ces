@@ -17,7 +17,7 @@ class BankAccountTest {
         assertEquals(0, atmOne.checkBalance(bankAccountThree)); //Balance should be 0
 
     }
-
+    
     @Test
     void withdrawTest() throws InsufficientFundsException{
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
