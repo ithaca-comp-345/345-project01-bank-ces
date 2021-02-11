@@ -3,8 +3,8 @@
 
 
 Use Cases
-checkBalance
-withdraw
+checkBalance,
+withdraw,
 deposit
 
 First Class
