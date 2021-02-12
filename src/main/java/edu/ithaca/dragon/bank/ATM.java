@@ -24,7 +24,7 @@ public class ATM {
        //Implement
     }
 
-    public void deposit (BankAccount account, double amount) throws InsufficientFundsException{
+    public void deposit (BankAccount account, double amount) throws IllegalArgumentException{
         //Implement
     }
 
