@@ -26,10 +26,8 @@ class BankAccountTest {
         atmOne.deposit(bankAccount, 100);
         assertEquals(300, atmOne.checkBalance(bankAccount)); 
         //test negative number
-        assertThrows(IllegalArgumentException.class, atmOne.deposit(bankAccount, 100.111));
-        //assertEquals(10.50, atmOne.checkBalance(bankAccountTwo));
-        //BankAccount bankAccountThree = new BankAccount("a@b.com", -1);
-        //assertEquals(0, atmOne.checkBalance(bankAccountThree)); //Balance should be 0
+        assertThrows(IllegalArgumentException.class, ()->atmOne.deposit(bankAccount, 100.111));
+        assertThrows(IllegalArgumentException.class, ()->atmOne.deposit(bankAccount, -1));
 
     }
     

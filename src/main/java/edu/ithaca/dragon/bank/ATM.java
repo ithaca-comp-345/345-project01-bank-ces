@@ -25,8 +25,14 @@ public class ATM {
     }
 
     public void deposit (BankAccount account, double amount) throws IllegalArgumentException{
-        //Implement
-    }
+            if  (!isAmountValid(amount)){
+                throw new IllegalArgumentException("invalid amount");
+            }
+            else{
+                double Final = account.getBalance()+amount;
+                account.setBalance(Final);
+            }
+        }
 
     public void transfer (BankAccount account, double amount) throws InsufficientFundsException{
         //Implement
