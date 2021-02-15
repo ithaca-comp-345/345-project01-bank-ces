@@ -21,7 +21,13 @@ public class ATM {
     }
     
     public void withdraw (BankAccount account, double amount) throws InsufficientFundsException{
-       //Implement
+       if (!isAmountValid(amount)){
+           throw new IllegalArgumentException("invalid amount");
+       }
+       else{
+           double Final = account.getBalance()-amount;
+           account.setBalance(Final);
+       }
     }
 
     public void deposit (BankAccount account, double amount) throws IllegalArgumentException{
@@ -34,8 +40,14 @@ public class ATM {
             }
         }
 
-    public void transfer (BankAccount account, double amount) throws InsufficientFundsException{
-        //Implement
+    public void transfer (BankAccount accountFrom, BankAccount accountTo, double amount) throws InsufficientFundsException{
+        if (!isAmountValid(amount)){
+            throw new IllegalArgumentException("invalid amount");
+        }
+        else{
+            accountFrom.withdraw(amount);
+            accountTo.deposit(amount);
+        }
     }
    
 
