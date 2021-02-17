@@ -32,12 +32,18 @@ class BankAccountTest {
     }
     
     @Test
-    void withdrawTest() throws InsufficientFundsException{
+    void withdrawTest() throws IllegalArgumentException{
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
-        bankAccount.withdraw(100);
-
+        ATM atmOne = new ATM();
+        atmOne.withdraw(bankAccount, 100);
         assertEquals(100, bankAccount.getBalance());
-        assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300));
+        assertThrows(IllegalArgumentException.class, () -> atmOne.withdraw(bankAccount, -1));
+        assertThrows(IllegalArgumentException.class, () -> atmOne.withdraw(bankAccount, 100.555));
+        assertThrows(InsufficientFundsException.class, () -> atmOne.withdraw(bankAccount, 200));
+        atmOne.withdraw(bankAccount, 0);
+        assertEquals(100, bankAccount.getBalance());
+        atmOne.withdraw(bankAccount, .50);
+        assertEquals(99.50, bankAccount.getBalance());
     }
 
     @Test
