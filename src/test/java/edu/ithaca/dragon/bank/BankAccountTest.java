@@ -38,6 +38,7 @@ class BankAccountTest {
         atmOne.withdraw(bankAccount, 100);
         assertEquals(100, bankAccount.getBalance());
         assertThrows(IllegalArgumentException.class, () -> atmOne.withdraw(bankAccount, -1));
+        assertThrows(IllegalArgumentException.class, ()->atmOne.withdraw(bankAccount, 100.111));
         assertThrows(IllegalArgumentException.class, () -> atmOne.withdraw(bankAccount, 50.555));
         assertThrows(InsufficientFundsException.class, () -> atmOne.withdraw(bankAccount, 200));
         atmOne.withdraw(bankAccount, 0);

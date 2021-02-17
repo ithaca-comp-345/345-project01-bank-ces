@@ -20,15 +20,13 @@ public class ATM {
         return account.getBalance();
     }
     
-    public void withdraw (BankAccount account, double amount) throws IllegalArgumentException,
-            InsufficientFundsException {
-        if(amount > account.getBalance()){
-            throw new InsufficientFundsException("Can't take out");
-        }
+    public void withdraw (BankAccount account, double amount) throws InsufficientFundsException, IllegalArgumentException{
        if (!isAmountValid(amount)){
            throw new IllegalArgumentException("invalid amount");
        }
-       
+       if (amount > account.getBalance()){
+        throw new InsufficientFundsException("not enough money");
+    }
        else{
            double Final = account.getBalance()-amount;
            account.setBalance(Final);
