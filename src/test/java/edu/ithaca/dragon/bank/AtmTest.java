@@ -10,6 +10,8 @@ public class AtmTest {
     void getBalanceTest() {
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
         ATM atmOne = new ATM();
+        //savings accOne = new savings("1234",200);
+       //assertEquals(200, atmOne.checkBalance(bankAccount.getChecking())); //Correct Balance displays 
         assertEquals(200, atmOne.checkBalance(bankAccount)); //Correct Balance displays 
         BankAccount bankAccountTwo = new BankAccount("a@b.com", 10.50);  //Balance with a Double
         assertEquals(10.50, atmOne.checkBalance(bankAccountTwo));

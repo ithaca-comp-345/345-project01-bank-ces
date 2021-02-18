@@ -1,6 +1,6 @@
 package edu.ithaca.dragon.bank;
 
-public class ATM {
+public class ATM  {
     
     public static boolean isAmountValid(double balance){
         String s = "" + balance;
@@ -12,6 +12,24 @@ public class ATM {
     }
 
     public double checkBalance (BankAccount account){
+        if (account.getBalance() < 0){
+            account.setBalance(0);
+        }
+        int temp = (int)(account.getBalance() * 100);
+        account.setBalance(((double)temp) /100);
+        return account.getBalance();
+    }
+
+    public double checkBalance (checkings account){
+        if (account.getBalance() < 0){
+            account.setBalance(0);
+        }
+        int temp = (int)(account.getBalance() * 100);
+        account.setBalance(((double)temp) /100);
+        return account.getBalance();
+    }
+    
+    public double checkBalance (savings account){
         if (account.getBalance() < 0){
             account.setBalance(0);
         }

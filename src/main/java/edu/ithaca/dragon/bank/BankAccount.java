@@ -4,21 +4,18 @@ public class BankAccount {
 
     private String email;
     private double balance;
+    private checkings accCheck;
+    private savings accSave;
 
-    /**
-     * @throws IllegalArgumentException if email is invalid
-     */
+    
     public BankAccount(String email, double startingBalance){
-        if (isEmailValid(email)){
-            this.email = email;
-            this.balance = startingBalance;
-        }
-        else {
-            throw new IllegalArgumentException("Email address: " + email + " is invalid, cannot create account");
-        }
+        this.accCheck = new checkings("1234", startingBalance);
+        this.accSave = new savings("1234", startingBalance);
     }
     public static boolean isAmountValid(double balance){
         String s = "" + balance;
+        
+        
         String[] result = s.split("\\."); //Splits on the decimal and puts each side into result[1] (left half) and result[2] (right half)
         if(balance >=0 && result[1].length() <= 2){
             return true;
@@ -26,6 +23,12 @@ public class BankAccount {
         return false;
     }
 
+    public checkings getChecking(){
+        return accCheck;
+    }
+    public savings getSaving(){
+        return accSave;
+    }
     public double getBalance(){
         return balance;
     }
