@@ -20,24 +20,7 @@ public class ATM  {
         return account.getBalance();
     }
 
-    public double checkBalance (checkings account){
-        if (account.getBalance() < 0){
-            account.setBalance(0);
-        }
-        int temp = (int)(account.getBalance() * 100);
-        account.setBalance(((double)temp) /100);
-        return account.getBalance();
-    }
-    
-    public double checkBalance (savings account){
-        if (account.getBalance() < 0){
-            account.setBalance(0);
-        }
-        int temp = (int)(account.getBalance() * 100);
-        account.setBalance(((double)temp) /100);
-        return account.getBalance();
-    }
-    
+   
     public void withdraw (BankAccount account, double amount) throws InsufficientFundsException, IllegalArgumentException{
        if (!isAmountValid(amount)){
            throw new IllegalArgumentException("invalid amount");

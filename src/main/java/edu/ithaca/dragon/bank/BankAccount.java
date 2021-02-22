@@ -11,7 +11,20 @@ public class BankAccount {
     public BankAccount(String email, double startingBalance){
         this.accCheck = new checkings("1234", startingBalance);
         this.accSave = new savings("1234", startingBalance);
+
+        if(!isAmountValid(startingBalance)){
+            throw new IllegalArgumentException("Amount: " + startingBalance + " is invalid, cannot create account");
+        }
+        else if (isEmailValid(email)){
+            this.email = email;
+            this.balance = startingBalance;
+        }
+        else {
+            throw new IllegalArgumentException("Email address: " + email + " is invalid, cannot create account");
+        }
     }
+    
+
     public static boolean isAmountValid(double balance){
         String s = "" + balance;
         
