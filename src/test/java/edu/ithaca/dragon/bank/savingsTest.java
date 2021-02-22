@@ -17,12 +17,14 @@ public class savingsTest {
     }
     @Test
     void compoundedTest(){
-        savings accOne = new savings("1234",300);
-        accOne.compounded(.02, 5);
-        assertEquals(6647, accOne.getBalance());
-        assertThrows(IllegalArgumentException.class, ()-> accOne.compounded(.0333,5));
-        assertThrows(IllegalArgumentException.class, ()->  accOne.compounded(-0.03,5));
-        assertThrows(IllegalArgumentException.class, ()->  accOne.compounded(0.03,0));
+        savings accOne = new savings("1234",2000);
+        
+        accOne.compounded(5, 8);
+        System.out.println(accOne.getBalance());
+        assertEquals(2979, accOne.getBalance());
+        assertThrows(IllegalArgumentException.class, ()->  accOne.compounded(-5,3));
+        assertThrows(IllegalArgumentException.class, ()->  accOne.compounded(5,-3));
+        assertThrows(IllegalArgumentException.class, ()->  accOne.compounded(0,3));
         savings accFour = new savings("1234",0);
         assertEquals(0, accFour.getBalance());
     }

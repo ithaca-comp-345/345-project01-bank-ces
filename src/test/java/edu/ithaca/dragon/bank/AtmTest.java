@@ -15,7 +15,7 @@ public class AtmTest {
         assertEquals(200, atmOne.checkBalance(bankAccount)); //Correct Balance displays 
         BankAccount bankAccountTwo = new BankAccount("a@b.com", 10.50);  //Balance with a Double
         assertEquals(10.50, atmOne.checkBalance(bankAccountTwo));
-        BankAccount bankAccountThree = new BankAccount("a@b.com", -1);
+        BankAccount bankAccountThree = new BankAccount("a@b.com", 0);
         assertEquals(0, atmOne.checkBalance(bankAccountThree)); //Balance should be 0
 
     }
