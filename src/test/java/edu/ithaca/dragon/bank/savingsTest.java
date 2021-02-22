@@ -15,4 +15,15 @@ public class savingsTest {
         savings accFour = new savings("1234",0);
         assertEquals(0, accFour.getBalance());
     }
+    @Test
+    void compoundedTest(){
+        savings accOne = new savings("1234",300);
+        accOne.compounded(.02, 5);
+        assertEquals(6647, accOne.getBalance());
+        assertThrows(IllegalArgumentException.class, ()-> accOne.compounded(.0333,5));
+        assertThrows(IllegalArgumentException.class, ()->  accOne.compounded(-0.03,5));
+        assertThrows(IllegalArgumentException.class, ()->  accOne.compounded(0.03,0));
+        savings accFour = new savings("1234",0);
+        assertEquals(0, accFour.getBalance());
+    }
 }
