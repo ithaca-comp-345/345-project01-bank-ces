@@ -77,19 +77,44 @@ public class ATM  {
     }   
 
     //six withdrawals or transfers per month own account
-    public void transfer (double amount, savings accountFrom, checkings accountTo ) throws InsufficientFundsException{
-        //Implement
+    public void transfer (double amount, savings accountFrom, checkings accountTo) throws InsufficientFundsException{
+        if(!isAmountValid(amount)){
+            throw new IllegalArgumentException("Amount: " + amount + " is invalid, cannot deposit");
+        }else if(amount > accountFrom.getBalance()){
+            throw new InsufficientFundsException("Not enough money to transfer");
+        }
+        accountTo.setBalance(accountTo.getBalance() +  amount);
+        accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
     public void transfer (double amount, checkings accountFrom, savings accountTo) throws InsufficientFundsException{
-        //Implement
+        if(!isAmountValid(amount)){
+            throw new IllegalArgumentException("Amount: " + amount + " is invalid, cannot deposit");
+        }else if(amount > accountFrom.getBalance()){
+            throw new InsufficientFundsException("Not enough money to transfer");
+        }
+        accountTo.setBalance(accountTo.getBalance() +  amount);
+        accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
 
     public void transfer (double amount, checkings accountFrom, checkings accountTo) throws InsufficientFundsException{
-        //Implement
+        if(!isAmountValid(amount)){
+            throw new IllegalArgumentException("Amount: " + amount + " is invalid, cannot deposit");
+        }else if(amount > accountFrom.getBalance()){
+            throw new InsufficientFundsException("Not enough money to transfer");
+        }
+        accountTo.setBalance(accountTo.getBalance() +  amount);
+        accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
     
     public void transfer (double amount, savings accountFrom, savings accountTo) throws InsufficientFundsException{
-        //Implement
+        if(!isAmountValid(amount)){
+            throw new IllegalArgumentException("Amount: " + amount + " is invalid, cannot deposit");
+        }else if(amount > accountFrom.getBalance()){
+            throw new InsufficientFundsException("Not enough money to transfer");
+        }
+        
+        accountTo.setBalance(accountTo.getBalance() +  amount);
+        accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
    
 

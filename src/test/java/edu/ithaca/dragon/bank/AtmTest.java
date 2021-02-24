@@ -122,10 +122,10 @@ public class AtmTest {
         //border case
         assertThrows(IllegalArgumentException.class, () -> atmOne.transfer(-5, bankAccount.getChecking(),bankAccount.getSaving())); //Can't transfer negative amount
         
-        //equivalence class tranfer between two bank accounts
+        //equivalence class tranfer between two bank
         atmOne.transfer(50, bankAccount.getChecking(), bankAccountTwo.getChecking()); 
-        assertEquals(250, bankAccountTwo.getChecking().getBalance());
-        assertEquals(150, bankAccount.getChecking().getBalance());
+        assertEquals(250, bankAccountTwo.getChecking().getBalance()); 
+        assertEquals(100, bankAccount.getChecking().getBalance());
         
         
     }
