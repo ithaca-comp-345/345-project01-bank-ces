@@ -76,7 +76,19 @@ public class ATM  {
         }
     }   
 
-    public void transfer (checkings accountFrom, checkings accountTo, double amount) throws InsufficientFundsException{
+    //six withdrawals or transfers per month own account
+    public void transfer (double amount, savings accountFrom, checkings accountTo ) throws InsufficientFundsException{
+        //Implement
+    }
+    public void transfer (double amount, checkings accountFrom, savings accountTo) throws InsufficientFundsException{
+        //Implement
+    }
+
+    public void transfer (double amount, checkings accountFrom, checkings accountTo) throws InsufficientFundsException{
+        //Implement
+    }
+    
+    public void transfer (double amount, savings accountFrom, savings accountTo) throws InsufficientFundsException{
         //Implement
     }
    
