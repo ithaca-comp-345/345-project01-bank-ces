@@ -1,6 +1,6 @@
 package edu.ithaca.dragon.bank;
 
-public class checkings {
+public class checkings{
     private String accountID = "";
     private double balance; 
 
@@ -13,9 +13,11 @@ public class checkings {
         }
         
     }
-
     public double getBalance(){
         return balance;
+    }
+    public String getAccountID(){
+        return accountID;
     }
 
     public void setBalance(double amount){

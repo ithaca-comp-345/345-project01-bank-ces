@@ -11,7 +11,17 @@ public class ATM  {
        return false;
     }
 
-    public double checkBalance (BankAccount account){
+    public double checkBalance (checkings account){
+        
+        if (account.getBalance() < 0){
+            account.setBalance(0);
+        }
+        int temp = (int)(account.getBalance() * 100);
+        account.setBalance(((double)temp) /100);
+        return account.getBalance();
+    }
+    public double checkBalance (savings account){
+        
         if (account.getBalance() < 0){
             account.setBalance(0);
         }
@@ -21,7 +31,7 @@ public class ATM  {
     }
 
    
-    public void withdraw (BankAccount account, double amount) throws InsufficientFundsException, IllegalArgumentException{
+    public void withdraw (checkings account, double amount) throws InsufficientFundsException, IllegalArgumentException{
        if (!isAmountValid(amount)){
            throw new IllegalArgumentException("invalid amount");
        }
@@ -33,26 +43,47 @@ public class ATM  {
            account.setBalance(Final);
        }
     }
-
-    public void deposit (BankAccount account, double amount) throws IllegalArgumentException{
-            if  (!isAmountValid(amount)){
-                throw new IllegalArgumentException("invalid amount");
-            }
-            else{
-                double Final = account.getBalance()+amount;
-                account.setBalance(Final);
-            }
-        }
-
-    public void transfer (BankAccount accountFrom, BankAccount accountTo, double amount) throws InsufficientFundsException{
+    public void withdraw (savings account, double amount) throws InsufficientFundsException, IllegalArgumentException{
         if (!isAmountValid(amount)){
             throw new IllegalArgumentException("invalid amount");
         }
+        if (amount > account.getBalance()){
+         throw new InsufficientFundsException("not enough money");
+     }
         else{
-            accountFrom.withdraw(amount);
-            accountTo.deposit(amount);
+            double Final = account.getBalance()-amount;
+            account.setBalance(Final);
+        }
+     }
+
+    public void deposit (checkings account, double amount) throws IllegalArgumentException{
+        if  (!isAmountValid(amount)){
+                throw new IllegalArgumentException("invalid amount");
+        }
+        else{
+            double Final = account.getBalance()+amount;
+            account.setBalance(Final);
         }
     }
+    public void deposit (savings account, double amount) throws IllegalArgumentException{
+        if  (!isAmountValid(amount)){
+                throw new IllegalArgumentException("invalid amount");
+        }
+        else{
+            double Final = account.getBalance()+amount;
+            account.setBalance(Final);
+        }
+    }   
+
+    // public void transfer (checkings accountFrom, checkings accountTo, double amount) throws InsufficientFundsException{
+    //     if (!isAmountValid(amount)){
+    //         throw new IllegalArgumentException("invalid amount");
+    //     }
+    //     else{
+    //         accountFrom.withdraw(amount);
+    //         accountTo.deposit(amount);
+    //     }
+    // }
    
 
 

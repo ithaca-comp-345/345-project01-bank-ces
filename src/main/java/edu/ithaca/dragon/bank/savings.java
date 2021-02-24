@@ -1,7 +1,7 @@
 package edu.ithaca.dragon.bank;
 
-public class savings extends ATM {
-    private String accountID = "";
+public class savings {
+    private String accountID;
     private double balance; 
 
     public savings(String accountID, double startingBalance){
@@ -15,6 +15,9 @@ public class savings extends ATM {
 
     public double getBalance(){
         return balance;
+    }
+    public String getAccountID(){
+        return accountID;
     }
 
     public void setBalance(double amount){
