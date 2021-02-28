@@ -20,6 +20,7 @@ public class ATM {
         }
         int temp = (int)(account.getBalance() * 100);
         account.setBalance(((double)temp) /100);
+        bankAccount.addTransAct("Checking's checked bal of: " + account.getBalance());
         return account.getBalance();
     }
     
@@ -30,7 +31,7 @@ public class ATM {
         }
         int temp = (int)(account.getBalance() * 100);
         account.setBalance(((double)temp) /100);
-        
+        bankAccount.addTransAct("Savings's checked bal of: " + account.getBalance());
         return account.getBalance();
     }
 
@@ -44,6 +45,7 @@ public class ATM {
     }
        else{
            double Final = account.getBalance()-amount;
+           bankAccount.addTransAct("Checkings's withdrew amount of: " + amount);
            account.setBalance(Final);
        }
     }
@@ -56,6 +58,7 @@ public class ATM {
      }
         else{
             double Final = account.getBalance()-amount;
+            bankAccount.addTransAct("Savings's withdrew amount of: " + amount);
             account.setBalance(Final);
         }
      }
@@ -66,6 +69,7 @@ public class ATM {
         }
         else{
             double Final = account.getBalance()+amount;
+            bankAccount.addTransAct("Checkings's deposited amount of: " + amount);
             account.setBalance(Final);
         }
     }
@@ -75,47 +79,55 @@ public class ATM {
         }
         else{
             double Final = account.getBalance()+amount;
+            bankAccount.addTransAct("Savings's deposited amount of: " + amount);
             account.setBalance(Final);
         }
     }   
 
     //six withdrawals or transfers per month own account
-    public void transfer (BankAccount bankAccount, double amount, savings accountFrom, checkings accountTo) throws InsufficientFundsException{
+    public void transfer (BankAccount bankAccountFrom, BankAccount bankAccountTo, double amount, savings accountFrom, checkings accountTo) throws InsufficientFundsException{
         if(!isAmountValid(amount)){
             throw new IllegalArgumentException("Amount: " + amount + " is invalid, cannot deposit");
         }else if(amount > accountFrom.getBalance()){
             throw new InsufficientFundsException("Not enough money to transfer");
         }
+        bankAccountFrom.addTransAct("Transfered " + amount + "to account id: " + accountTo.getAccountID());
+        bankAccountTo.addTransAct("Received " + amount + "from account id: " + accountFrom.getAccountID());
         accountTo.setBalance(accountTo.getBalance() +  amount);
         accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
-    public void transfer (BankAccount bankAccount, double amount, checkings accountFrom, savings accountTo) throws InsufficientFundsException{
+    public void transfer (BankAccount bankAccountFrom, BankAccount bankAccountTo, double amount, checkings accountFrom, savings accountTo) throws InsufficientFundsException{
         if(!isAmountValid(amount)){
             throw new IllegalArgumentException("Amount: " + amount + " is invalid, cannot deposit");
         }else if(amount > accountFrom.getBalance()){
             throw new InsufficientFundsException("Not enough money to transfer");
         }
+        bankAccountFrom.addTransAct("Transfered " + amount + "to account id: " + accountTo.getAccountID());
+        bankAccountTo.addTransAct("Received " + amount + "from account id: " + accountFrom.getAccountID());
         accountTo.setBalance(accountTo.getBalance() +  amount);
         accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
 
-    public void transfer (BankAccount bankAccount, double amount, checkings accountFrom, checkings accountTo) throws InsufficientFundsException{
+    public void transfer (BankAccount bankAccountFrom, BankAccount bankAccountTo, double amount, checkings accountFrom, checkings accountTo) throws InsufficientFundsException{
         if(!isAmountValid(amount)){
             throw new IllegalArgumentException("Amount: " + amount + " is invalid, cannot deposit");
         }else if(amount > accountFrom.getBalance()){
             throw new InsufficientFundsException("Not enough money to transfer");
         }
+        bankAccountFrom.addTransAct("Transfered " + amount + "to account id: " + accountTo.getAccountID());
+        bankAccountTo.addTransAct("Received " + amount + "from account id: " + accountFrom.getAccountID());
         accountTo.setBalance(accountTo.getBalance() +  amount);
         accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
     
-    public void transfer (BankAccount bankAccount, double amount, savings accountFrom, savings accountTo) throws InsufficientFundsException{
+    public void transfer (BankAccount bankAccountFrom, BankAccount bankAccountTo, double amount, savings accountFrom, savings accountTo) throws InsufficientFundsException{
         if(!isAmountValid(amount)){
             throw new IllegalArgumentException("Amount: " + amount + " is invalid, cannot deposit");
         }else if(amount > accountFrom.getBalance()){
             throw new InsufficientFundsException("Not enough money to transfer");
         }
-        
+        bankAccountFrom.addTransAct("Transfered " + amount + "to account id: " + accountTo.getAccountID());
+        bankAccountTo.addTransAct("Received " + amount + "from account id: " + accountFrom.getAccountID());
         accountTo.setBalance(accountTo.getBalance() +  amount);
         accountFrom.setBalance(accountFrom.getBalance() - amount);
     }

@@ -22,9 +22,8 @@ public class BankAccount {
     public void addAcc(savings acc){
         this.accSave = acc;
     }
-    public void addTransAct(Object object){
-       
-        transActHistory.add(object.toString());
+    public void addTransAct(String trans){
+        transActHistory.add(trans);
     }
     public ArrayList getTransActHistory(){
         return transActHistory;

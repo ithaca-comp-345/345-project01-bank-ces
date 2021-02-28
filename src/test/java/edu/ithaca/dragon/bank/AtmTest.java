@@ -113,19 +113,19 @@ public class AtmTest {
         bankAccountTwo.addAcc(accFour);
 
         //Base case 
-        atmOne.transfer(bankAccount, 50, bankAccount.getChecking(),bankAccount.getSaving()); 
+        atmOne.transfer(bankAccount, bankAccount, 50, bankAccount.getChecking(),bankAccount.getSaving()); 
         //equivalence class
         assertEquals(150, bankAccount.getChecking().getBalance()); //Tranfer int amount to second account
         assertEquals(250, bankAccount.getSaving().getBalance()); //Remaining balance of first account
         //equivalence class
-        assertThrows(InsufficientFundsException.class, () -> atmOne.transfer(bankAccount, 200, bankAccount.getChecking(),bankAccount.getSaving())); //Not enough money to transfer
+        assertThrows(InsufficientFundsException.class, () -> atmOne.transfer(bankAccount, bankAccount, 200, bankAccount.getChecking(),bankAccount.getSaving())); //Not enough money to transfer
         //border case
-        assertThrows(IllegalArgumentException.class, () -> atmOne.transfer(bankAccount, 15.555, bankAccount.getChecking(),bankAccount.getSaving())); //too many decimals
+        assertThrows(IllegalArgumentException.class, () -> atmOne.transfer(bankAccount, bankAccount, 15.555, bankAccount.getChecking(),bankAccount.getSaving())); //too many decimals
         //border case
-        assertThrows(IllegalArgumentException.class, () -> atmOne.transfer(bankAccount, -5, bankAccount.getChecking(),bankAccount.getSaving())); //Can't transfer negative amount
+        assertThrows(IllegalArgumentException.class, () -> atmOne.transfer(bankAccount, bankAccount, -5, bankAccount.getChecking(),bankAccount.getSaving())); //Can't transfer negative amount
         
         //equivalence class tranfer between two bank
-        atmOne.transfer(bankAccount, 50, bankAccount.getChecking(), bankAccountTwo.getChecking()); 
+        atmOne.transfer(bankAccount, bankAccountTwo, 50, bankAccount.getChecking(), bankAccountTwo.getChecking()); 
         assertEquals(250, bankAccountTwo.getChecking().getBalance()); 
         assertEquals(100, bankAccount.getChecking().getBalance());
     }
