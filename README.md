@@ -11,5 +11,12 @@ First Class
 ATM
 
 
-UML and Use Case Diagram:
+Diagrams:
 https://drive.google.com/file/d/1aIJALxgnocfWLP0THEH5rjmHRWtgH5QS/view?usp=sharing
+
+
+Work breakdown:
+Sean - ATM class, centralBank class, ATM tests, centralBank tests, ATM user Sequence Diagrams
+Eli - 
+Cameron - 
+Anything not mentioned was worked on all together 
