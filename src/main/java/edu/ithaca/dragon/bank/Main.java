@@ -97,7 +97,7 @@ public class Main {
                 System.out.println("Current Balance: $"+account.getChecking().getBalance());
                 amount = scan.nextDouble();
 
-                if(account.getChecking().getBalance()-amount < 0){System.out.println("You cannot withdraw this much, please try again");}
+                if(account.getChecking().getBalance()-amount < 0){System.out.println("You cannot withdraw this much, please try again");amount=-1;}
                 else if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
                 else{
                     atm.withdraw(account, account.getChecking(), amount);
@@ -112,7 +112,7 @@ public class Main {
                 System.out.println("Please enter the amount: ");
                 System.out.println("Current Balance: $"+account.getSaving().getBalance());
                 amount = scan.nextDouble();
-                if(account.getSaving().getBalance()-amount < 0){System.out.println("You cannot withdraw this much, please try again");}
+                if(account.getSaving().getBalance()-amount < 0){System.out.println("You cannot withdraw this much, please try again");amount=-1;}
                 else if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
                 else{
                     atm.withdraw(account, account.getSaving(), amount);
@@ -186,7 +186,8 @@ public class Main {
                 System.out.println("Please enter the amount: ");
                 System.out.println("Current Balance: $"+account.getChecking().getBalance());
                 amount = scan.nextDouble();
-                if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
+                if(account.getChecking().getBalance()-amount < 0){System.out.println("You cannot transfer this much, please try again");amount=-1;}
+                else if (!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
                 else{
                     atm.transfer(account, account, amount, account.getChecking(), account.getSaving());
                     System.out.println("Transfer Complete");
@@ -200,7 +201,8 @@ public class Main {
                 System.out.println("Please enter the amount: ");
                 System.out.println("Current Balance: $"+account.getSaving().getBalance());
                 amount = scan.nextDouble();
-                if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
+                if(account.getSaving().getBalance()-amount < 0){System.out.println("You cannot transfer this much, please try again");amount=-1;}
+                else if (!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
                 else{
                     atm.transfer(account, account, amount, account.getSaving(), account.getChecking());
                     System.out.println("Transfer Complete");
