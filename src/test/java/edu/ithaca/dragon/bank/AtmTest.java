@@ -14,7 +14,6 @@ public class AtmTest {
         BankAccount bankAccount = new BankAccount("a@b.com");
         savings accOne = new savings("09100002212345678",200);
         bankAccount.addAcc(accOne);
-        System.out.println(bankAccount.getSaving().getBalance());
         assertEquals(200, atmOne.checkBalance(bankAccount, bankAccount.getSaving())); //Correct Balance displays 
         
         //Savings account only
@@ -185,5 +184,23 @@ public class AtmTest {
         BankAccount acc = chase.findAccount("seanblackford1@gmail.com");
         assertEquals(4, acc.getTransActHistory().size());
 
+    }
+
+    @Test
+    void UseCaseTest() throws IllegalArgumentException, InsufficientFundsException{
+        ATM atm = new ATM();
+        BankAccount bankAccount = new BankAccount("seanblackford1@gmail.com");
+        savings accOne = new savings("09100002212345678",100);
+        checkings accTwo = new checkings("09100002212348754",500);
+        bankAccount.addAcc(accOne);
+        bankAccount.addAcc(accTwo);
+        atm.checkBalance(bankAccount, bankAccount.getSaving());
+        atm.checkBalance(bankAccount, bankAccount.getChecking());
+        atm.withdraw(bankAccount, bankAccount.getSaving(), 100);
+        atm.deposit(bankAccount, bankAccount.getChecking(), 200);
+        atm.checkBalance(bankAccount, bankAccount.getSaving());
+        atm.checkBalance(bankAccount, bankAccount.getChecking());
+        atm.transfer(bankAccount, bankAccount, 300, bankAccount.getChecking(), bankAccount.getSaving());
+        atm.checkTransActionHistory(bankAccount);
     }
 }

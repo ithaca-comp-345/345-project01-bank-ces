@@ -91,8 +91,8 @@ public class ATM {
         }else if(amount > accountFrom.getBalance()){
             throw new InsufficientFundsException("Not enough money to transfer");
         }
-        bankAccountFrom.addTransAct("Transfered " + amount + "to account id: " + accountTo.getAccountID());
-        bankAccountTo.addTransAct("Received " + amount + "from account id: " + accountFrom.getAccountID());
+        bankAccountFrom.addTransAct("Transfered " + amount + " to account id: " + accountTo.getAccountID());
+        bankAccountTo.addTransAct("Received " + amount + " from account id: " + accountFrom.getAccountID());
         accountTo.setBalance(accountTo.getBalance() +  amount);
         accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
@@ -102,8 +102,8 @@ public class ATM {
         }else if(amount > accountFrom.getBalance()){
             throw new InsufficientFundsException("Not enough money to transfer");
         }
-        bankAccountFrom.addTransAct("Transfered " + amount + "to account id: " + accountTo.getAccountID());
-        bankAccountTo.addTransAct("Received " + amount + "from account id: " + accountFrom.getAccountID());
+        bankAccountFrom.addTransAct("Transfered " + amount + " to account id: " + accountTo.getAccountID());
+        bankAccountTo.addTransAct("Received " + amount + " from account id: " + accountFrom.getAccountID());
         accountTo.setBalance(accountTo.getBalance() +  amount);
         accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
@@ -114,8 +114,8 @@ public class ATM {
         }else if(amount > accountFrom.getBalance()){
             throw new InsufficientFundsException("Not enough money to transfer");
         }
-        bankAccountFrom.addTransAct("Transfered " + amount + "to account id: " + accountTo.getAccountID());
-        bankAccountTo.addTransAct("Received " + amount + "from account id: " + accountFrom.getAccountID());
+        bankAccountFrom.addTransAct("Transfered " + amount + " to account id: " + accountTo.getAccountID());
+        bankAccountTo.addTransAct("Received " + amount + " from account id: " + accountFrom.getAccountID());
         accountTo.setBalance(accountTo.getBalance() +  amount);
         accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
@@ -126,8 +126,8 @@ public class ATM {
         }else if(amount > accountFrom.getBalance()){
             throw new InsufficientFundsException("Not enough money to transfer");
         }
-        bankAccountFrom.addTransAct("Transfered " + amount + "to account id: " + accountTo.getAccountID());
-        bankAccountTo.addTransAct("Received " + amount + "from account id: " + accountFrom.getAccountID());
+        bankAccountFrom.addTransAct("Transfered " + amount + " to account id: " + accountTo.getAccountID());
+        bankAccountTo.addTransAct("Received " + amount + " from account id: " + accountFrom.getAccountID());
         accountTo.setBalance(accountTo.getBalance() +  amount);
         accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
