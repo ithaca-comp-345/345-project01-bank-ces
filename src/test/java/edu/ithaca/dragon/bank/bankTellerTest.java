@@ -10,7 +10,7 @@ public class bankTellerTest {
     void createAccountTest() {
     BankTeller tellerOne = new BankTeller();
     //Test Checking
-    checkings accOne = tellerOne.createChecking("09100002212345678",0);
+    checkings accOne = tellerOne.createChecking("09100002212345678", 0);
     assertEquals(0, accOne.getBalance());
     //Test illegal throws
     assertThrows(IllegalArgumentException.class, ()-> tellerOne.createChecking("09100002212345678",-30));
