@@ -7,6 +7,11 @@ public class CentralBank {
     private ArrayList<BankAccount> bankAccounts = new ArrayList<>();
 
     public BankAccount findAccount (String accountID){
+        for(int i = 0; i < bankAccounts.size(); i++){
+            if(bankAccounts.get(i).getEmail().equals(accountID)){
+                return bankAccounts.get(i);
+            }
+        }
         return null;
         
     }
@@ -15,6 +20,6 @@ public class CentralBank {
     }
 
     public ArrayList<BankAccount> getAllAccounts (){
-        return null;
+        return  bankAccounts;
     }
 }

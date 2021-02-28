@@ -20,8 +20,7 @@ public class CentralBankTest {
         chase.addAccount(bankAccountOne);
         chase.addAccount(bankAccountTwo);
         chase.addAccount(bankAccountThree);
-        System.out.println(chase.findAccount("a@b.com"));
-        
+        assertEquals("a@b.com", chase.findAccount("a@b.com").getEmail());
     }
     @Test
     void getAllAccounts(){
