@@ -116,7 +116,4 @@ public class ATM  {
         accountTo.setBalance(accountTo.getBalance() +  amount);
         accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
-   
-
-
 }
