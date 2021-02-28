@@ -1,11 +1,12 @@
 package edu.ithaca.dragon.bank;
+import java.util.ArrayList;
 
 public class BankAccount {
 
     private String email;
     private checkings accCheck;
     private savings accSave;
-    
+    private ArrayList<String> transActHistory = new ArrayList<>();
     
     public BankAccount(String email){
         if (isEmailValid(email)){
@@ -20,6 +21,12 @@ public class BankAccount {
     }
     public void addAcc(savings acc){
         this.accSave = acc;
+    }
+    public void addTransAct(String trans){
+        transActHistory.add(trans);
+    }
+    public ArrayList getTransActHistory(){
+        return transActHistory;
     }
     
     public checkings getChecking(){

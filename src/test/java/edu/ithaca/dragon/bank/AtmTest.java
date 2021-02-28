@@ -48,6 +48,7 @@ public class AtmTest {
         
 
     }
+    
     @Test
     void depositTest() throws IllegalArgumentException{
         ATM atmOne = new ATM();
@@ -98,6 +99,7 @@ public class AtmTest {
     void transferTest() throws InsufficientFundsException { 
         ATM atmOne = new ATM();
         //transfer (amount, accountFrom, accountTo)
+        
         BankAccount bankAccount = new BankAccount("a@b.com");
         savings accOne = new savings("09100002212345678",200);
         checkings accTwo = new checkings("09100002212345678",200);

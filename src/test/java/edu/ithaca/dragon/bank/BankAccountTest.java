@@ -40,4 +40,15 @@ class BankAccountTest {
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("")); //Invalid email
     }
 
+    @Test
+    void transActionHistory() {
+        BankAccount bankAccount = new BankAccount("a@b.com");
+        savings accOne = new savings("09100002212345678",200);
+        bankAccount.addAcc(accOne);
+        accOne.setBalance(300);
+        bankAccount.addTransAct("Email: " + bankAccount.getEmail() + "\n" + accOne.getAccountID() + "\n" + "set balance: 300");
+        assertEquals(300, bankAccount.getSaving().getBalance());
+        assertEquals(1, bankAccount.getTransActHistory().size());
+    }
+
 }
