@@ -20,7 +20,7 @@ public class savingsTest {
         savings accOne = new savings("1234",2000);
         
         accOne.compounded(5, 8);
-        System.out.println(accOne.getBalance());
+        
         assertEquals(2979, accOne.getBalance());
         assertThrows(IllegalArgumentException.class, ()->  accOne.compounded(-5,3));
         assertThrows(IllegalArgumentException.class, ()->  accOne.compounded(5,-3));

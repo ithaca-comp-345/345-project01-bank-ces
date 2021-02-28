@@ -11,5 +11,12 @@ First Class
 ATM
 
 
-UML and Use Case Diagram:
-https://drive.google.com/file/d/1aIJALxgnocfWLP0THEH5rjmHRWtgH5QS/view?usp=sharing
+Diagrams:
+https://drive.google.com/file/d/1aIJALxgnocfWLP0THEH5rjmHRWtgH5QS/view?usp=sharing 
+
+
+Work breakdown:
+Sean - ATM class, bankAccount class, savings class, checkings class, centralBank class, (All tests for each of the classes previous), ATM user Sequence Diagrams\
+Eli - \
+Cameron - User Interface, Admin/Admin Tests (This was scrapped, and therefore isn't present)
+Anything not mentioned was worked on all together
