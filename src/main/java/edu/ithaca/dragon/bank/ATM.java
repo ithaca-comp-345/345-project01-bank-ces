@@ -13,7 +13,7 @@ public class ATM {
        return false;
     }
 
-    public double checkBalance (checkings account){
+    public double checkBalance (BankAccount bankAccount,checkings account){
         
         if (account.getBalance() < 0){
             account.setBalance(0);
@@ -23,18 +23,19 @@ public class ATM {
         return account.getBalance();
     }
     
-    public double checkBalance (savings account){
+    public double checkBalance (BankAccount bankAccount,savings account){
         
         if (account.getBalance() < 0){
             account.setBalance(0);
         }
         int temp = (int)(account.getBalance() * 100);
         account.setBalance(((double)temp) /100);
+        
         return account.getBalance();
     }
 
    
-    public void withdraw (checkings account, double amount) throws InsufficientFundsException, IllegalArgumentException{
+    public void withdraw (BankAccount bankAccount,checkings account, double amount) throws InsufficientFundsException, IllegalArgumentException{
        if (!isAmountValid(amount)){
            throw new IllegalArgumentException("invalid amount");
        }
@@ -46,7 +47,7 @@ public class ATM {
            account.setBalance(Final);
        }
     }
-    public void withdraw (savings account, double amount) throws InsufficientFundsException, IllegalArgumentException{
+    public void withdraw (BankAccount bankAccount, savings account, double amount) throws InsufficientFundsException, IllegalArgumentException{
         if (!isAmountValid(amount)){
             throw new IllegalArgumentException("invalid amount");
         }
@@ -59,7 +60,7 @@ public class ATM {
         }
      }
 
-    public void deposit (checkings account, double amount) throws IllegalArgumentException{
+    public void deposit (BankAccount bankAccount, checkings account, double amount) throws IllegalArgumentException{
         if  (!isAmountValid(amount)){
                 throw new IllegalArgumentException("invalid amount");
         }
@@ -68,7 +69,7 @@ public class ATM {
             account.setBalance(Final);
         }
     }
-    public void deposit (savings account, double amount) throws IllegalArgumentException{
+    public void deposit (BankAccount bankAccount, savings account, double amount) throws IllegalArgumentException{
         if  (!isAmountValid(amount)){
                 throw new IllegalArgumentException("invalid amount");
         }
@@ -79,7 +80,7 @@ public class ATM {
     }   
 
     //six withdrawals or transfers per month own account
-    public void transfer (double amount, savings accountFrom, checkings accountTo) throws InsufficientFundsException{
+    public void transfer (BankAccount bankAccount, double amount, savings accountFrom, checkings accountTo) throws InsufficientFundsException{
         if(!isAmountValid(amount)){
             throw new IllegalArgumentException("Amount: " + amount + " is invalid, cannot deposit");
         }else if(amount > accountFrom.getBalance()){
@@ -88,7 +89,7 @@ public class ATM {
         accountTo.setBalance(accountTo.getBalance() +  amount);
         accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
-    public void transfer (double amount, checkings accountFrom, savings accountTo) throws InsufficientFundsException{
+    public void transfer (BankAccount bankAccount, double amount, checkings accountFrom, savings accountTo) throws InsufficientFundsException{
         if(!isAmountValid(amount)){
             throw new IllegalArgumentException("Amount: " + amount + " is invalid, cannot deposit");
         }else if(amount > accountFrom.getBalance()){
@@ -98,7 +99,7 @@ public class ATM {
         accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
 
-    public void transfer (double amount, checkings accountFrom, checkings accountTo) throws InsufficientFundsException{
+    public void transfer (BankAccount bankAccount, double amount, checkings accountFrom, checkings accountTo) throws InsufficientFundsException{
         if(!isAmountValid(amount)){
             throw new IllegalArgumentException("Amount: " + amount + " is invalid, cannot deposit");
         }else if(amount > accountFrom.getBalance()){
@@ -108,7 +109,7 @@ public class ATM {
         accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
     
-    public void transfer (double amount, savings accountFrom, savings accountTo) throws InsufficientFundsException{
+    public void transfer (BankAccount bankAccount, double amount, savings accountFrom, savings accountTo) throws InsufficientFundsException{
         if(!isAmountValid(amount)){
             throw new IllegalArgumentException("Amount: " + amount + " is invalid, cannot deposit");
         }else if(amount > accountFrom.getBalance()){
