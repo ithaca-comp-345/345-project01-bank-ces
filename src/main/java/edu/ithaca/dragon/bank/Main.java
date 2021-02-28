@@ -115,7 +115,7 @@ public class Main {
                 if(account.getSaving().getBalance()-amount < 0){System.out.println("You cannot withdraw this much, please try again");}
                 else if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
                 else{
-                    atm.withdraw(account.getSaving(), amount);
+                    atm.withdraw(account, account.getSaving(), amount);
                     System.out.println("Withdrawal Complete");
                     System.out.println("New Balance: $"+account.getSaving().getBalance());
                 }
