@@ -40,6 +40,14 @@ public class BankAccount {
         return email;
     }
 
+    public void nullSavings(){
+        accSave = null;
+    }
+
+    public void nullChecking(){
+        accCheck = null;
+    }
+
     public static boolean isEmailValid(String email){
         if ((email.indexOf('@') == -1) || (email.indexOf('@') == 0)){
             return false;

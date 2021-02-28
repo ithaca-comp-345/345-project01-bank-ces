@@ -4,32 +4,37 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BankTellerTest {
+public class bankTellerTest {
 
     @Test
     void createAccountTest() {
+    BankTeller tellerOne = new BankTeller();
     //Test Checking
-    checkings accOne = createAccount("09100002212345678","checking",0);
-    assertEquals(300, accOne.getBalance());
+    checkings accOne = tellerOne.createChecking("09100002212345678",0);
+    assertEquals(0, accOne.getBalance());
     //Test illegal throws
-    assertThrows(IllegalArgumentException.class, ()-> createAccount("accOne","09100002212345678","a",0));
-    assertThrows(IllegalArgumentException.class, ()-> createAccount("accOne","09100002212345678","checking",-30));
-    assertThrows(IllegalArgumentException.class, ()-> createAccount("accOne","09100002212345678","checking", 300.001));
+    assertThrows(IllegalArgumentException.class, ()-> tellerOne.createChecking("09100002212345678",-30));
+    assertThrows(IllegalArgumentException.class, ()-> tellerOne.createChecking("09100002212345678", 300.001));
     //Test amount
-    checkings accTwo = createAccount("09100002212345678","checking",300);
-    assertEquals(3, acctwo.getBalance());
+    checkings accTwo = tellerOne.createChecking("09100002212345678",300);
+    assertEquals(300, accTwo.getBalance());
     //Test savings
-    Savings accThree = createAccount("09100002212345678","savings",0);
+    savings accThree = tellerOne.createSavings("09100002212345678",0);
     assertEquals(0, accThree.getBalance());
-    savings AccFour = createAccount("09100002212345678","savings",300);
+    savings accFour = tellerOne.createSavings("09100002212345678",300);
     assertEquals(300, accFour.getBalance());
 }
 
     @Test
     void closeAccountTest(){
-        //createAccount("09100002212345678","checking",0);
-        //closeAccount("09100002212345678");
-        //assertEquals(accOne,null)
+        BankTeller tellerOne = new BankTeller();
+        BankAccount accOne = new BankAccount("a@b.com");
+        accOne.addAcc(tellerOne.createSavings("09100002212345678",0));
+        accOne.addAcc(tellerOne.createChecking("09100002212345678",0));
+        tellerOne.closeAccount("checkings", accOne);
+        assertThrows(IllegalArgumentException.class, ()-> tellerOne.closeAccount("a", accOne));
+        assertEquals(null,accOne.getChecking());
     }
+}
 
 

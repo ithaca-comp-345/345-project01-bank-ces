@@ -3,20 +3,25 @@ package edu.ithaca.dragon.bank;
 
 public class BankTeller extends ATM{
     
-    public static void createAccount(String accountID,String type,double initialBalance)throws IllegalArgumentException{
-        if(type == "savings"){
+    public savings createSavings(String accountID,double initialBalance)throws IllegalArgumentException{
             savings AccOne = new savings(accountID,initialBalance);
-        }
-        if(type == "checking"){
-            checkings AccOne = new checkings(accountID, initialBalance);
-        }
-        else{
-            throw new IllegalArgumentException("Account type is invalid");
-        }
+            return AccOne;
     }
 
-    public static void closeAccount(String accountID){
-        //AccName = null;
+    public checkings createChecking(String accountID,double initialBalance)throws IllegalArgumentException{
+        checkings AccOne = new checkings(accountID,initialBalance);
+        return AccOne;
+    }
+    public void closeAccount(String type, BankAccount account)throws IllegalArgumentException{
+        if(type == "savings"){
+            account.nullChecking();
+        }
+        else if(type == "checkings"){
+            account.nullSavings();
+        }
+        else{
+            throw new IllegalArgumentException("Invalid Type");
+        }
     }
 }
 
