@@ -35,6 +35,35 @@ public class bankTellerTest {
         assertThrows(IllegalArgumentException.class, ()-> tellerOne.closeAccount("a", accOne));
         assertEquals(null,accOne.getChecking());
     }
+// the following test is the use case and the integration test because bank Teller uses integration test
+    @Test
+    void bankTellerUseCase(){
+        BankTeller tellerOne = new BankTeller();
+        BankAccount accOne = new BankAccount("a@b.com");
+        accOne.addAcc(tellerOne.createSavings("09100002212345678",0));
+        tellerOne.closeAccount("savings", accOne);
+        accOne.addAcc(tellerOne.createChecking("09100002212345678",400));
+    }
+
+    @Test
+    void bankTellerSystemTest(){
+        BankTeller tellerOne = new BankTeller();
+        CentralBank theBank = new CentralBank();
+        BankAccount accOne = new BankAccount("a@b.com");
+        BankAccount accTwo = new BankAccount("a@b.com");
+        BankAccount accThree = new BankAccount("a@b.com");
+        theBank.addAccount(accOne);
+        theBank.addAccount(accTwo);
+        theBank.addAccount(accThree);
+        accOne.addAcc(tellerOne.createSavings("09100002212345678",0));
+        accTwo.addAcc(tellerOne.createChecking("09100002212345678",0));
+        accThree.addAcc(tellerOne.createChecking("09100002212345678",0));
+        accTwo.addAcc(tellerOne.createSavings("09100002212345678",0));
+        accThree.addAcc(tellerOne.createSavings("09100002212345678",0));
+        tellerOne.closeAccount("savings",accThree);
+        tellerOne.closeAccount("checkings", accThree);
+        tellerOne.closeAccount("checkings", accTwo);
+    }
 }
 
 
