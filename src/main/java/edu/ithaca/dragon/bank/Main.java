@@ -54,7 +54,7 @@ public class Main {
     }
 
     public static boolean validChoice(String input){
-        String[] choices = {"withdraw", "deposit", "transfer", "balance", "quit"};
+        String[] choices = {"withdraw", "deposit", "transfer", "balance", "history", "quit"};
         for (int i=0;i<choices.length;i++){
             if(input.equalsIgnoreCase(choices[i])){return true;}
         }
@@ -100,7 +100,7 @@ public class Main {
                 if(account.getChecking().getBalance()-amount < 0){System.out.println("You cannot withdraw this much, please try again");}
                 else if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
                 else{
-                    atm.withdraw(account.getChecking(), amount);
+                    atm.withdraw(account, account.getChecking(), amount);
                     System.out.println("Withdrawal Complete");
                     System.out.println("New Balance: $"+account.getChecking().getBalance());
                 }
@@ -145,7 +145,7 @@ public class Main {
                 amount = scan.nextDouble();
                 if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
                 else{
-                    atm.deposit(account.getChecking(), amount);
+                    atm.deposit(account, account.getChecking(), amount);
                     System.out.println("Deposit Complete");
                     System.out.println("New Balance: $"+account.getChecking().getBalance());
                 }
@@ -159,7 +159,7 @@ public class Main {
                 amount = scan.nextDouble();
                 if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
                 else{
-                    atm.deposit(account.getSaving(), amount);
+                    atm.deposit(account, account.getSaving(), amount);
                     System.out.println("Deposit Complete");
                     System.out.println("New Balance: $"+account.getSaving().getBalance());
                 }
@@ -188,7 +188,7 @@ public class Main {
                 amount = scan.nextDouble();
                 if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
                 else{
-                    atm.transfer(amount, account.getChecking(), account.getSaving());
+                    atm.transfer(account, account, amount, account.getChecking(), account.getSaving());
                     System.out.println("Transfer Complete");
                     System.out.println("--New Balances-- \nChecking: $"+account.getChecking().getBalance()+
                             "\nSaving: $"+account.getSaving().getBalance());
@@ -202,13 +202,20 @@ public class Main {
                 amount = scan.nextDouble();
                 if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
                 else{
-                    atm.transfer(amount, account.getSaving(), account.getChecking());
+                    atm.transfer(account, account, amount, account.getSaving(), account.getChecking());
                     System.out.println("Transfer Complete");
                     System.out.println("--New Balances-- \nChecking: $"+account.getChecking().getBalance()+
                             "\nSaving: $"+account.getSaving().getBalance());
                 }
             }
         }
+    }
+
+    public static void history(BankAccount account){
+        ATM atm = new ATM();
+        System.out.println("--Account History--");
+        atm.checkTransActionHistory(account);
+        System.out.println("-------------------");
     }
 
 
@@ -218,7 +225,7 @@ public class Main {
         String input = "bananas"; //placeholder to enter loop
 
         while(!input.equalsIgnoreCase("quit")){
-            System.out.println("\n--Menu--\nBalance\nWithdraw\nDeposit\nTransfer\nQuit\n--------\n");
+            System.out.println("\n--Menu--\nBalance\nWithdraw\nDeposit\nTransfer\nHistory\nQuit\n--------\n");
             input = scan.nextLine();
             if (!validChoice(input)){System.out.println("Please enter a valid choice");} //error catching
 
@@ -226,6 +233,7 @@ public class Main {
             else if (input.equalsIgnoreCase("withdraw")){withdraw(account);}
             else if (input.equalsIgnoreCase("deposit")){deposit(account);}
             else if (input.equalsIgnoreCase("transfer")){transfer(account);}
+            else if (input.equalsIgnoreCase("history")){history(account);}
 
         }
     }

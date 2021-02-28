@@ -19,4 +19,5 @@ Work breakdown:
 Sean - ATM class, bankAccount class, savings class, checkings class, centralBank class, (All tests for each of the classes previous), ATM user Sequence Diagrams\
 Eli - \
 Cameron - User Interface, Admin/Admin Tests (This was scrapped, and therefore isn't present)
+
 Anything not mentioned was worked on all together
