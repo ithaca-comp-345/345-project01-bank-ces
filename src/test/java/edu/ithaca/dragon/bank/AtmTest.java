@@ -143,4 +143,47 @@ public class AtmTest {
         atmOne.withdraw(bankAccount, bankAccount.getChecking(), 100);
         assertEquals(3, bankAccount.getTransActHistory().size());
     }
+
+
+    @Test
+    void ATMIntegrationTest() throws IllegalArgumentException, InsufficientFundsException{
+        ATM atm = new ATM();
+        BankAccount bankAccount = new BankAccount("seanblackford1@gmail.com");
+        savings accOne = new savings("09100002212345678",100);
+        checkings accTwo = new checkings("09100002212348754",500);
+        bankAccount.addAcc(accOne);
+        bankAccount.addAcc(accTwo);
+        assertEquals(100, atm.checkBalance(bankAccount, accOne));
+        assertEquals(500,  atm.checkBalance(bankAccount, accTwo));
+       
+        atm.withdraw(bankAccount, bankAccount.getSaving(), 100);
+        assertEquals(0, atm.checkBalance(bankAccount, accOne));
+        assertThrows(InsufficientFundsException.class, () -> atm.withdraw(bankAccount, bankAccount.getSaving(), 1000));
+        atm.transfer(bankAccount, bankAccount, 50, bankAccount.getChecking(), bankAccount.getSaving()); 
+        assertEquals(50, atm.checkBalance(bankAccount, accOne));
+    }
+
+    @Test
+    void ATMSystemTest() throws IllegalArgumentException, InsufficientFundsException{
+        ATM atm = new ATM();
+        CentralBank chase = new CentralBank();
+        BankAccount bankAccount = new BankAccount("seanblackford1@gmail.com");
+        BankAccount bankAccountTwo = new BankAccount("sblackford@gmail.com");
+
+        savings accOne = new savings("09100002212345678",100);
+        checkings accTwo = new checkings("09100002212348754",500);
+        bankAccount.addAcc(accOne);
+        bankAccount.addAcc(accTwo);
+        chase.addAccount(bankAccount);
+        chase.addAccount(bankAccountTwo);
+
+        assertEquals(100, atm.checkBalance(bankAccount, accOne));
+        assertEquals(500,  atm.checkBalance(bankAccount, accTwo));
+        atm.withdraw(bankAccount, bankAccount.getSaving(), 100);
+        atm.deposit(bankAccount, bankAccount.getChecking(), 200);
+        assertEquals(null, chase.findAccount("sblackford@ithaca.edu"));
+        BankAccount acc = chase.findAccount("seanblackford1@gmail.com");
+        assertEquals(4, acc.getTransActHistory().size());
+
+    }
 }
