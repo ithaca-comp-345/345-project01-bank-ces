@@ -1,5 +1,9 @@
 package edu.ithaca.dragon.bank;
 
-public static void class Main(String[] args) {
-    System.out.println("Hello World");
+public class Main {
+
+    public static void  main(String[] args) {
+        System.out.println("Hello World");
+    }
+
 }
