@@ -53,23 +53,29 @@ public class Main {
     }
 
     public static void withdraw(BankAccount account){
+        Scanner scan = new Scanner(System.in);
+        if(!isAmountValid(account.getChecking().getBalance())){return;}
+
         System.out.println("Welcome to the withdraw menu, from which account would you like to withdraw?");
         System.out.println("\nCheckings: "+account.getChecking());
         System.out.println("\nSavings: "+account.getSaving());
+        String input = scan.nextLine();
     }
 
     public static void menu(BankAccount account){
         Scanner scan = new Scanner(System.in);
         System.out.println("What would you like to do?");
-        System.out.println("\n--Menu--\nWithdraw\nDeposit\nTransfer\nQuit\n--------\n");
-        String input = scan.nextLine();
+        String input = "bananas"; //placeholder to enter loop
 
-        while(!validChoice(input)){ //confirmation loop, checks the choice against the options
-            System.out.println("Please choose a valid option");
+        while(!input.equalsIgnoreCase("quit")){
             System.out.println("\n--Menu--\nWithdraw\nDeposit\nTransfer\nQuit\n--------\n");
             input = scan.nextLine();
+            if (!validChoice(input)){System.out.println("Please enter a valid choice");} //error catching
+
+            if (input.equalsIgnoreCase("withdraw")){withdraw(account);} //Withdraw sequence
         }
-        if (input.equalsIgnoreCase("withdraw")){withdraw(account);} //Withdraw sequence
+
+
     }
 
     public static void main(String[] args) {
