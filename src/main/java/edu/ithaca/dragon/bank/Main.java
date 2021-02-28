@@ -72,8 +72,8 @@ public class Main {
     public static void balance(BankAccount account){
         Scanner scan = new Scanner(System.in);
         System.out.println("--Accounts--");
-        System.out.println("Checking: " + account.getChecking().getBalance()+
-                "\nSavings: " + account.getSaving().getBalance());
+        System.out.println("Checking: $" + account.getChecking().getBalance()+
+                "\nSavings: $" + account.getSaving().getBalance());
     }
 
     public static void withdraw(BankAccount account) throws InsufficientFundsException {
@@ -92,14 +92,62 @@ public class Main {
         }
 
         if(input.equalsIgnoreCase("checking")){
-            while(!isAmountValid(amount) || account.getChecking().getBalance()-amount < 0){ //check if amount is valid
+            while(!isAmountValid(amount)){ //check if amount is valid
                 System.out.println("Please enter the amount: ");
+                System.out.println("Current Balance: $"+account.getChecking().getBalance());
                 amount = scan.nextDouble();
+
                 if(account.getChecking().getBalance()-amount < 0){System.out.println("You cannot withdraw this much, please try again");}
                 else if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
                 else{
                     atm.withdraw(account.getChecking(), amount);
                     System.out.println("Withdrawal Complete");
+                    System.out.println("New Balance: $"+account.getChecking().getBalance());
+                }
+            }
+        }
+
+        if(input.equalsIgnoreCase("saving")){
+            while(!isAmountValid(amount)){ //check if amount is valid
+                System.out.println("Please enter the amount: ");
+                System.out.println("Current Balance: $"+account.getSaving().getBalance());
+                amount = scan.nextDouble();
+                if(account.getSaving().getBalance()-amount < 0){System.out.println("You cannot withdraw this much, please try again");}
+                else if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
+                else{
+                    atm.withdraw(account.getSaving(), amount);
+                    System.out.println("Withdrawal Complete");
+                    System.out.println("New Balance: $"+account.getSaving().getBalance());
+                }
+            }
+        }
+    }
+
+    public static void deposit(BankAccount account) throws InsufficientFundsException {
+        ATM atm = new ATM();
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("From which account would you like to make a deposit?");
+        System.out.println("--Accounts--");
+        System.out.println("Checking\nSaving");
+        String input = scan.nextLine();
+        double amount = -4.00; //placeholder to enter loop
+
+        while (!checkOrSave(input)) {
+            System.out.println("Please enter a valid choice");
+            input = scan.nextLine();
+        }
+
+        if(input.equalsIgnoreCase("checking")){
+            while(!isAmountValid(amount)){ //check if amount is valid
+                System.out.println("Please enter the amount: ");
+                System.out.println("Current Balance: $"+account.getChecking().getBalance());
+                amount = scan.nextDouble();
+                if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
+                else{
+                    atm.deposit(account.getChecking(), amount);
+                    System.out.println("Deposit Complete");
+                    System.out.println("New Balance: $"+account.getChecking().getBalance());
                 }
             }
         }
@@ -107,18 +155,18 @@ public class Main {
         if(input.equalsIgnoreCase("saving")){
             while(!isAmountValid(amount) || account.getSaving().getBalance()-amount < 0){ //check if amount is valid
                 System.out.println("Please enter the amount: ");
+                System.out.println("Current Balance: $"+account.getSaving().getBalance());
                 amount = scan.nextDouble();
-                if(account.getSaving().getBalance()-amount < 0){System.out.println("You cannot withdraw this much, please try again");}
-                else if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
+                if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
                 else{
-                    atm.withdraw(account.getSaving(), amount);
-                    System.out.println("Withdrawal Complete");
+                    atm.deposit(account.getSaving(), amount);
+                    System.out.println("Deposit Complete");
+                    System.out.println("New Balance: $"+account.getSaving().getBalance());
                 }
             }
         }
-
-
     }
+
 
     public static void menu(BankAccount account) throws InsufficientFundsException {
         Scanner scan = new Scanner(System.in);
@@ -132,12 +180,10 @@ public class Main {
 
             if (input.equalsIgnoreCase("balance")){balance(account);} //balance sequence
             if (input.equalsIgnoreCase("withdraw")){withdraw(account);}
+            if (input.equalsIgnoreCase("deposit")){deposit(account);}
 
         }
-
-
     }
-
     public static void main(String[] args) throws InsufficientFundsException {
         BankAccount account = create_account();
         menu(account);
