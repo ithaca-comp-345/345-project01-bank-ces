@@ -10,6 +10,9 @@ public class CentralBank {
         return null;
         
     }
+    public void addAccount(BankAccount acc){
+        bankAccounts.add(acc);
+    }
 
     public ArrayList<BankAccount> getAllAccounts (){
         return null;
