@@ -35,9 +35,9 @@ class BankAccountTest {
     void constructorTest() {
         BankAccount bankAccount = new BankAccount("a@b.com");
 
-        assertEquals("a@b.com", bankAccount.getEmail());
+        assertEquals("a@b.com", bankAccount.getEmail()); //equivalence class
         //check for exception thrown correctly
-        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("")); //Invalid email
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("")); //border case
     }
 
     @Test
@@ -47,8 +47,8 @@ class BankAccountTest {
         bankAccount.addAcc(accOne);
         accOne.setBalance(300);
         bankAccount.addTransAct("Email: " + bankAccount.getEmail() + "\n" + accOne.getAccountID() + "\n" + "set balance: 300");
-        assertEquals(300, bankAccount.getSaving().getBalance());
-        assertEquals(1, bankAccount.getTransActHistory().size());
+        assertEquals(300, bankAccount.getSaving().getBalance()); //equivalence class
+        assertEquals(1, bankAccount.getTransActHistory().size()); //equivalence class
     }
 
 }

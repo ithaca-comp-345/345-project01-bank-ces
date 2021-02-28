@@ -9,9 +9,9 @@ public class savingsTest {
     @Test
     void creatCheckingsTest() {
         savings accOne = new savings("1234",300);
-        assertEquals(300, accOne.getBalance());
-        assertThrows(IllegalArgumentException.class, ()-> new savings("1234",300.555));
-        assertThrows(IllegalArgumentException.class, ()->  new savings("1234",-30));
+        assertEquals(300, accOne.getBalance()); //equivalence class
+        assertThrows(IllegalArgumentException.class, ()-> new savings("1234",300.555)); //border case
+        assertThrows(IllegalArgumentException.class, ()->  new savings("1234",-30)); //border case
         savings accFour = new savings("1234",0);
         assertEquals(0, accFour.getBalance());
     }
@@ -21,11 +21,11 @@ public class savingsTest {
         
         accOne.compounded(5, 8);
         
-        assertEquals(2979, accOne.getBalance());
-        assertThrows(IllegalArgumentException.class, ()->  accOne.compounded(-5,3));
-        assertThrows(IllegalArgumentException.class, ()->  accOne.compounded(5,-3));
-        assertThrows(IllegalArgumentException.class, ()->  accOne.compounded(0,3));
-        savings accFour = new savings("1234",0);
-        assertEquals(0, accFour.getBalance());
+        assertEquals(2979, accOne.getBalance()); //equivalence class
+        assertThrows(IllegalArgumentException.class, ()->  accOne.compounded(-5,3)); //border case
+        assertThrows(IllegalArgumentException.class, ()->  accOne.compounded(5,-3)); //border case
+        assertThrows(IllegalArgumentException.class, ()->  accOne.compounded(0,3)); //border case
+        savings accFour = new savings("1234",0); 
+        assertEquals(0, accFour.getBalance()); //equivalence class
     }
 }

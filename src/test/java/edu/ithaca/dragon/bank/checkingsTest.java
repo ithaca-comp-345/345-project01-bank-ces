@@ -8,10 +8,10 @@ public class checkingsTest {
     @Test
     void creatCheckingsTest() {
         checkings accOne = new checkings("1234",300);
-        assertEquals(300, accOne.getBalance());
-        assertThrows(IllegalArgumentException.class, ()-> new checkings("1234",300.555));
-        assertThrows(IllegalArgumentException.class, ()->  new checkings("1234",-30));
-        checkings accFour = new checkings("1234",0);
-        assertEquals(0, accFour.getBalance());
+        assertEquals(300, accOne.getBalance()); //equivalence class
+        assertThrows(IllegalArgumentException.class, ()-> new checkings("1234",300.555)); //equivalence class
+        assertThrows(IllegalArgumentException.class, ()->  new checkings("1234",-30)); //equivalence class
+        checkings accFour = new checkings("1234",0); 
+        assertEquals(0, accFour.getBalance()); //equivalence class
     }
 }

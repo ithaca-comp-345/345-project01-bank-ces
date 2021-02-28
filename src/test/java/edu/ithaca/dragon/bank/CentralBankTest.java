@@ -20,7 +20,7 @@ public class CentralBankTest {
         chase.addAccount(bankAccountOne);
         chase.addAccount(bankAccountTwo);
         chase.addAccount(bankAccountThree);
-        assertEquals("a@b.com", chase.findAccount("a@b.com").getEmail());
+        assertEquals("a@b.com", chase.findAccount("a@b.com").getEmail()); //equivalence class
     }
     @Test
     void getAllAccounts(){
@@ -34,6 +34,6 @@ public class CentralBankTest {
         chase.addAccount(bankAccountTwo);
         chase.addAccount(bankAccountThree);
         ArrayList<BankAccount> bankAccounts = chase.getAllAccounts();
-        assertEquals(4, bankAccounts.size());
+        assertEquals(4, bankAccounts.size()); //equivalence class
     }
 }

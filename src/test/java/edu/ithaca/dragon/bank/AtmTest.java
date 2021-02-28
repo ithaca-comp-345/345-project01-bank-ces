@@ -14,26 +14,26 @@ public class AtmTest {
         BankAccount bankAccount = new BankAccount("a@b.com");
         savings accOne = new savings("09100002212345678",200);
         bankAccount.addAcc(accOne);
-        assertEquals(200, atmOne.checkBalance(bankAccount, bankAccount.getSaving())); //Correct Balance displays 
+        assertEquals(200, atmOne.checkBalance(bankAccount, bankAccount.getSaving())); //equivalence class
         
         //Savings account only
-        BankAccount bankAccountTwo = new BankAccount("a@b.com");  //Balance with a Double
-        savings accTwo = new savings("09100002212345678",10.55);
+        BankAccount bankAccountTwo = new BankAccount("a@b.com");  
+        savings accTwo = new savings("09100002212345678",10.55); 
         bankAccountTwo.addAcc(accTwo);
-        assertEquals(10.55, atmOne.checkBalance(bankAccountTwo, bankAccountTwo.getSaving()));
+        assertEquals(10.55, atmOne.checkBalance(bankAccountTwo, bankAccountTwo.getSaving())); //equivalence class
         
        
         //Checkings account only
         BankAccount bankAccountFour = new BankAccount("a@b.com");
         checkings accOneC = new checkings("09100002212345678",20);
         bankAccountFour.addAcc(accOneC);
-        assertEquals(20, atmOne.checkBalance(bankAccountFour, bankAccountFour.getChecking())); 
+        assertEquals(20, atmOne.checkBalance(bankAccountFour, bankAccountFour.getChecking())); //equivalence class
 
         //Checkings account only
         BankAccount bankAccountFive = new BankAccount("a@b.com");
         checkings accTwoC = new checkings("09100002212345678",20.55);
         bankAccountFive.addAcc(accTwoC);
-        assertEquals(20.55, atmOne.checkBalance(bankAccountFive, bankAccountFive.getChecking())); 
+        assertEquals(20.55, atmOne.checkBalance(bankAccountFive, bankAccountFive.getChecking())); //equivalence class
 
         //Checkings and savings account 
         BankAccount bankAccountSix = new BankAccount("a@b.com");
@@ -41,8 +41,8 @@ public class AtmTest {
         checkings accThreeC = new checkings("09100002212345678",20.55);
         bankAccountSix.addAcc(accThreeC);
         bankAccountSix.addAcc(accThree);
-        assertEquals(20.55, atmOne.checkBalance(bankAccountSix, bankAccountSix.getChecking())); 
-        assertEquals(10.55, atmOne.checkBalance(bankAccountSix, bankAccountSix.getSaving()));
+        assertEquals(20.55, atmOne.checkBalance(bankAccountSix, bankAccountSix.getChecking())); //equivalence class
+        assertEquals(10.55, atmOne.checkBalance(bankAccountSix, bankAccountSix.getSaving())); //equivalence class
 
         
 
@@ -55,11 +55,11 @@ public class AtmTest {
         savings accOne = new savings("09100002212345678",200);
         bankAccount.addAcc(accOne);
         //test postive number
-        atmOne.deposit(bankAccount,bankAccount.getSaving(), 100);
-        assertEquals(300, atmOne.checkBalance(bankAccount, bankAccount.getSaving())); 
+        atmOne.deposit(bankAccount,bankAccount.getSaving(), 100); //equivalence class
+        assertEquals(300, atmOne.checkBalance(bankAccount, bankAccount.getSaving())); //equivalence class
         //test negative number
-        assertThrows(IllegalArgumentException.class, ()->atmOne.deposit(bankAccount, bankAccount.getSaving(), 100.111));
-        assertThrows(IllegalArgumentException.class, ()->atmOne.deposit(bankAccount, bankAccount.getSaving(), -1));
+        assertThrows(IllegalArgumentException.class, ()->atmOne.deposit(bankAccount, bankAccount.getSaving(), 100.111)); //border case
+        assertThrows(IllegalArgumentException.class, ()->atmOne.deposit(bankAccount, bankAccount.getSaving(), -1)); //border case
 
     }
 
@@ -70,29 +70,29 @@ public class AtmTest {
         savings accOne = new savings("09100002212345678",200);
         bankAccount.addAcc(accOne);
         atmOne.withdraw(bankAccount, bankAccount.getSaving(), 100);
-        assertEquals(100, bankAccount.getSaving().getBalance());
-        assertThrows(IllegalArgumentException.class, () -> atmOne.withdraw(bankAccount, bankAccount.getSaving(), -1));
-        assertThrows(IllegalArgumentException.class, ()->atmOne.withdraw(bankAccount, bankAccount.getSaving(), 100.111));
-        assertThrows(IllegalArgumentException.class, () -> atmOne.withdraw(bankAccount, bankAccount.getSaving(), 50.555));
-        assertThrows(InsufficientFundsException.class, () -> atmOne.withdraw(bankAccount, bankAccount.getSaving(), 200));
+        assertEquals(100, bankAccount.getSaving().getBalance()); //equivalence class
+        assertThrows(IllegalArgumentException.class, () -> atmOne.withdraw(bankAccount, bankAccount.getSaving(), -1)); //border case
+        assertThrows(IllegalArgumentException.class, ()->atmOne.withdraw(bankAccount, bankAccount.getSaving(), 100.111)); //border case
+        assertThrows(IllegalArgumentException.class, () -> atmOne.withdraw(bankAccount, bankAccount.getSaving(), 50.555)); //border case
+        assertThrows(InsufficientFundsException.class, () -> atmOne.withdraw(bankAccount, bankAccount.getSaving(), 200)); //border case
         atmOne.withdraw(bankAccount, bankAccount.getSaving(), 0);
-        assertEquals(100, bankAccount.getSaving().getBalance());
+        assertEquals(100, bankAccount.getSaving().getBalance()); //equivalence class
         atmOne.withdraw(bankAccount, bankAccount.getSaving(), .50);
-        assertEquals(99.50, bankAccount.getSaving().getBalance());
+        assertEquals(99.50, bankAccount.getSaving().getBalance()); //equivalence class
         
         
         checkings accTwo = new checkings("09100002212345678",200);
         bankAccount.addAcc(accTwo);
         atmOne.withdraw(bankAccount, bankAccount.getChecking(), 100);
-        assertEquals(100, bankAccount.getChecking().getBalance());
-        assertThrows(IllegalArgumentException.class, () -> atmOne.withdraw(bankAccount, bankAccount.getChecking(), -1));
-        assertThrows(IllegalArgumentException.class, ()->atmOne.withdraw(bankAccount, bankAccount.getChecking(), 100.111));
-        assertThrows(IllegalArgumentException.class, () -> atmOne.withdraw(bankAccount, bankAccount.getChecking(), 50.555));
-        assertThrows(InsufficientFundsException.class, () -> atmOne.withdraw(bankAccount, bankAccount.getChecking(), 200));
-        atmOne.withdraw(bankAccount, bankAccount.getChecking(), 0);
-        assertEquals(100, bankAccount.getChecking().getBalance());
+        assertEquals(100, bankAccount.getChecking().getBalance()); //equivalence class
+        assertThrows(IllegalArgumentException.class, () -> atmOne.withdraw(bankAccount, bankAccount.getChecking(), -1)); //border case
+        assertThrows(IllegalArgumentException.class, ()->atmOne.withdraw(bankAccount, bankAccount.getChecking(), 100.111)); //border case
+        assertThrows(IllegalArgumentException.class, () -> atmOne.withdraw(bankAccount, bankAccount.getChecking(), 50.555)); //border case
+        assertThrows(InsufficientFundsException.class, () -> atmOne.withdraw(bankAccount, bankAccount.getChecking(), 200)); //border case
+        atmOne.withdraw(bankAccount, bankAccount.getChecking(), 0); 
+        assertEquals(100, bankAccount.getChecking().getBalance()); //equivalence class
         atmOne.withdraw(bankAccount, bankAccount.getChecking(), .50);
-        assertEquals(99.50, bankAccount.getChecking().getBalance());
+        assertEquals(99.50, bankAccount.getChecking().getBalance()); //equivalence class
     }
     @Test
     void transferTest() throws InsufficientFundsException { 
@@ -124,9 +124,9 @@ public class AtmTest {
         assertThrows(IllegalArgumentException.class, () -> atmOne.transfer(bankAccount, bankAccount, -5, bankAccount.getChecking(),bankAccount.getSaving())); //Can't transfer negative amount
         
         //equivalence class tranfer between two bank
-        atmOne.transfer(bankAccount, bankAccountTwo, 50, bankAccount.getChecking(), bankAccountTwo.getChecking()); 
-        assertEquals(250, bankAccountTwo.getChecking().getBalance()); 
-        assertEquals(100, bankAccount.getChecking().getBalance());
+        atmOne.transfer(bankAccount, bankAccountTwo, 50, bankAccount.getChecking(), bankAccountTwo.getChecking());  
+        assertEquals(250, bankAccountTwo.getChecking().getBalance()); //equivalence class
+        assertEquals(100, bankAccount.getChecking().getBalance()); //equivalence class
     }
     @Test
     void transActionHistoryTest() throws IllegalArgumentException, InsufficientFundsException {
@@ -137,10 +137,10 @@ public class AtmTest {
         bankAccount.addAcc(accOne);
         bankAccount.addAcc(accTwo);
         atmOne.checkBalance(bankAccount, accOne);
-        atmOne.withdraw(bankAccount, bankAccount.getSaving(), 100);
-        assertEquals(2, bankAccount.getTransActHistory().size());
-        atmOne.withdraw(bankAccount, bankAccount.getChecking(), 100);
-        assertEquals(3, bankAccount.getTransActHistory().size());
+        atmOne.withdraw(bankAccount, bankAccount.getSaving(), 100); 
+        assertEquals(2, bankAccount.getTransActHistory().size()); //equivalence class
+        atmOne.withdraw(bankAccount, bankAccount.getChecking(), 100); 
+        assertEquals(3, bankAccount.getTransActHistory().size()); //equivalence class
     }
 
 
@@ -152,14 +152,14 @@ public class AtmTest {
         checkings accTwo = new checkings("09100002212348754",500);
         bankAccount.addAcc(accOne);
         bankAccount.addAcc(accTwo);
-        assertEquals(100, atm.checkBalance(bankAccount, accOne));
-        assertEquals(500,  atm.checkBalance(bankAccount, accTwo));
+        assertEquals(100, atm.checkBalance(bankAccount, accOne)); //equivalence class
+        assertEquals(500,  atm.checkBalance(bankAccount, accTwo)); //equivalence class
        
-        atm.withdraw(bankAccount, bankAccount.getSaving(), 100);
-        assertEquals(0, atm.checkBalance(bankAccount, accOne));
-        assertThrows(InsufficientFundsException.class, () -> atm.withdraw(bankAccount, bankAccount.getSaving(), 1000));
-        atm.transfer(bankAccount, bankAccount, 50, bankAccount.getChecking(), bankAccount.getSaving()); 
-        assertEquals(50, atm.checkBalance(bankAccount, accOne));
+        atm.withdraw(bankAccount, bankAccount.getSaving(), 100); //equivalence class
+        assertEquals(0, atm.checkBalance(bankAccount, accOne)); //equivalence class
+        assertThrows(InsufficientFundsException.class, () -> atm.withdraw(bankAccount, bankAccount.getSaving(), 1000));  //border case
+        atm.transfer(bankAccount, bankAccount, 50, bankAccount.getChecking(), bankAccount.getSaving());  //border case   
+        assertEquals(50, atm.checkBalance(bankAccount, accOne)); //equivalence class
     }
 
     @Test
@@ -176,13 +176,13 @@ public class AtmTest {
         chase.addAccount(bankAccount);
         chase.addAccount(bankAccountTwo);
 
-        assertEquals(100, atm.checkBalance(bankAccount, accOne));
-        assertEquals(500,  atm.checkBalance(bankAccount, accTwo));
+        assertEquals(100, atm.checkBalance(bankAccount, accOne)); //equivalence class
+        assertEquals(500,  atm.checkBalance(bankAccount, accTwo)); //equivalence class
         atm.withdraw(bankAccount, bankAccount.getSaving(), 100);
         atm.deposit(bankAccount, bankAccount.getChecking(), 200);
-        assertEquals(null, chase.findAccount("sblackford@ithaca.edu"));
+        assertEquals(null, chase.findAccount("sblackford@ithaca.edu")); //equivalence class
         BankAccount acc = chase.findAccount("seanblackford1@gmail.com");
-        assertEquals(4, acc.getTransActHistory().size());
+        assertEquals(4, acc.getTransActHistory().size()); //equivalence class
 
     }
 
