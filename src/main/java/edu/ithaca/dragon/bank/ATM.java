@@ -131,6 +131,7 @@ public class ATM {
         accountTo.setBalance(accountTo.getBalance() +  amount);
         accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
+
     public void checkTransActionHistory(BankAccount account){
         ArrayList<String> transActHistory = account.getTransActHistory();
         for(int i = 0; i < transActHistory.size(); i++){
@@ -138,7 +139,4 @@ public class ATM {
         }
         
     }
-   
-
-
-}
+  }
