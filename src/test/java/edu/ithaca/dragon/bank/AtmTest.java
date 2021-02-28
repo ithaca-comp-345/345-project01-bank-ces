@@ -64,7 +64,7 @@ public class AtmTest {
 
     }
 
-     @Test
+    @Test
     void withdrawTest() throws IllegalArgumentException, InsufficientFundsException {
         ATM atmOne = new ATM();
         BankAccount bankAccount = new BankAccount("a@b.com");
@@ -128,7 +128,19 @@ public class AtmTest {
         atmOne.transfer(50, bankAccount.getChecking(), bankAccountTwo.getChecking()); 
         assertEquals(250, bankAccountTwo.getChecking().getBalance()); 
         assertEquals(100, bankAccount.getChecking().getBalance());
-        
-        
+    }
+    @Test
+    void transActionHistoryTest() throws IllegalArgumentException, InsufficientFundsException {
+        ATM atmOne = new ATM();
+        BankAccount bankAccount = new BankAccount("a@b.com");
+        savings accOne = new savings("09100002212345678",200);
+        checkings accTwo = new checkings("09100002212345678",200);
+        bankAccount.addAcc(accOne);
+        bankAccount.addAcc(accTwo);
+        atmOne.checkBalance(accOne);
+        atmOne.withdraw(bankAccount.getSaving(), 100);
+        assertEquals(2, bankAccount.getTransActHistory().size());
+        atmOne.withdraw(bankAccount.getChecking(), 100);
+        assertEquals(3, bankAccount.getTransActHistory().size());
     }
 }

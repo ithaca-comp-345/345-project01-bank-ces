@@ -1,6 +1,8 @@
 package edu.ithaca.dragon.bank;
 
-public class ATM  {
+import java.util.ArrayList;
+
+public class ATM {
     
     public static boolean isAmountValid(double balance){
         String s = "" + balance;
@@ -117,7 +119,11 @@ public class ATM  {
         accountFrom.setBalance(accountFrom.getBalance() - amount);
     }
     public void checkTransActionHistory(BankAccount account){
-        //Implement
+        ArrayList<String> transActHistory = account.getTransActHistory();
+        for(int i = 0; i < transActHistory.size(); i++){
+            System.out.println(transActHistory.get(i));
+        }
+        
     }
    
 
