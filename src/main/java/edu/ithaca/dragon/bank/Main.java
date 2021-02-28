@@ -167,6 +167,50 @@ public class Main {
         }
     }
 
+    public static void transfer(BankAccount account) throws InsufficientFundsException{
+        ATM atm = new ATM();
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Which account would you like to transfer money from?");
+        System.out.println("--Accounts--");
+        System.out.println("Checking\nSaving");
+        String input = scan.nextLine();
+        double amount = -4.00; //placeholder to enter loop
+
+        while (!checkOrSave(input)) {
+            System.out.println("Please enter a valid choice");
+            input = scan.nextLine();
+        }
+        if(input.equalsIgnoreCase("checking")){
+            while(!isAmountValid(amount)){ //check if amount is valid
+                System.out.println("Please enter the amount: ");
+                System.out.println("Current Balance: $"+account.getChecking().getBalance());
+                amount = scan.nextDouble();
+                if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
+                else{
+                    atm.transfer(amount, account.getChecking(), account.getSaving());
+                    System.out.println("Transfer Complete");
+                    System.out.println("--New Balances-- \nChecking: $"+account.getChecking().getBalance()+
+                            "\nSaving: $"+account.getSaving().getBalance());
+                }
+            }
+        }
+        if(input.equalsIgnoreCase("saving")){
+            while(!isAmountValid(amount)){ //check if amount is valid
+                System.out.println("Please enter the amount: ");
+                System.out.println("Current Balance: $"+account.getSaving().getBalance());
+                amount = scan.nextDouble();
+                if(!isAmountValid(amount)){System.out.println("This is an invalid amount, please try again");}
+                else{
+                    atm.transfer(amount, account.getSaving(), account.getChecking());
+                    System.out.println("Transfer Complete");
+                    System.out.println("--New Balances-- \nChecking: $"+account.getChecking().getBalance()+
+                            "\nSaving: $"+account.getSaving().getBalance());
+                }
+            }
+        }
+    }
+
 
     public static void menu(BankAccount account) throws InsufficientFundsException {
         Scanner scan = new Scanner(System.in);
@@ -178,9 +222,10 @@ public class Main {
             input = scan.nextLine();
             if (!validChoice(input)){System.out.println("Please enter a valid choice");} //error catching
 
-            if (input.equalsIgnoreCase("balance")){balance(account);} //balance sequence
-            if (input.equalsIgnoreCase("withdraw")){withdraw(account);}
-            if (input.equalsIgnoreCase("deposit")){deposit(account);}
+            else if (input.equalsIgnoreCase("balance")){balance(account);} //balance sequence
+            else if (input.equalsIgnoreCase("withdraw")){withdraw(account);}
+            else if (input.equalsIgnoreCase("deposit")){deposit(account);}
+            else if (input.equalsIgnoreCase("transfer")){transfer(account);}
 
         }
     }
